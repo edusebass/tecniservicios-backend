@@ -15,7 +15,7 @@ const editarProducto = async (req, res) => {
         // Puedes validar los datos antes de actualizar el producto
 
         const productoActualizado = await Producto.findOneAndUpdate(
-            { key: id },
+            { _id: id },
             { marca, labrado, caracteristicas, alto, ancho, rin, costo },
             { new: true }
         );
