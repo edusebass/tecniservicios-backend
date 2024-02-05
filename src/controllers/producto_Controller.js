@@ -1,7 +1,8 @@
+import mongoose from 'mongoose';
 import Producto  from '../models/Producto.js';
 
 const listarProductos = async (req,res)=>{
-    const productos = await Producto.find().select("-_id")
+    const productos = await Producto.find()
 
     res.status(200).json(productos)
 }
@@ -30,6 +31,16 @@ const editarProducto = async (req, res) => {
     }
 };
 
+const añadirProducto = async (req, res) => {
+    try {
+        
+        const {paciente} = req.body
+        const producto = await Producto.create(req.body)
+        res.status(200).json({msg:`Registro exitoso del Producto ${producto._id}`, producto})
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
 
-
-export { listarProductos, editarProducto }
+export { listarProductos, editarProducto, añadirProducto }
