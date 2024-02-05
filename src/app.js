@@ -2,17 +2,23 @@ import express from 'express';
 import multer from 'multer';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+import router from './routes/index.js';
+import cors from 'cors';
 
+// Configuraciones
 dotenv.config();
 
 const app = express();
-const port = 1000;
+app.set('port',process.env.port || 1000)
+
+app.use(cors())
+app.use(express.json());
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-app.use(express.json());
 
+// RUTAS
 app.post('/send-email', upload.single('file'), async (req, res) => {
   try {
     const { name, email } = req.body;
@@ -45,9 +51,10 @@ app.post('/send-email', upload.single('file'), async (req, res) => {
   } catch (error) {
     console.error('Error al enviar el correo:', error);
     res.status(500).json({ success: false, message: 'Error al enviar el correo' });
-  }
-});
+  }});
 
-app.listen(port, () => {
-  console.log(`Servidor en ejecución en http://localhost:${port}`);
-});
+//llamdo a los controladores
+app.use('/api', router)
+
+
+export default  app
