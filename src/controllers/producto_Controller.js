@@ -52,6 +52,32 @@ const añadirProducto = async (req, res) => {
     }
 };
 
+const eliminarProducto = async (req, res) => {
+    try {
+        const { _id } = req.params;
 
-export { listarProductos, editarProducto, añadirProducto };
+        console.log(`Intentando eliminar producto con _id: ${_id}`);
+
+        // Verificar si el producto existe
+        const productoExistente = await Producto.findById(_id);
+
+        if (!productoExistente) {
+            console.log('Producto no encontrado');
+            return res.status(404).json({ error: 'Producto no encontrado' });
+        }
+
+        // Eliminar el producto
+        await Producto.findByIdAndDelete(_id);
+
+        console.log('Producto eliminado con éxito');
+        res.status(200).json({ msg: `Producto eliminado con éxito` });
+    } catch (error) {
+        console.error("Error al eliminar producto:", error);
+        res.status(500).json({ error: 'Error al eliminar producto' });
+    }
+};
+
+
+
+export { listarProductos, editarProducto, añadirProducto, eliminarProducto };
 
