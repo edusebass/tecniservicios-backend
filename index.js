@@ -1,5 +1,5 @@
-import app from './app.js'
-import connection from './database.js';
+import app from './src/app.js'
+import connection from './src/database.js';
 
 //Llamar a la base de datos
 connection()
