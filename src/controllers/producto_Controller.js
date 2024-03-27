@@ -20,7 +20,7 @@ const editarProducto = async (req, res) => {
 
         const productoActualizado = await Producto.findOneAndUpdate(
             { _id: id },
-            { marca, labrado, caracteristicas, alto, ancho, rin, costo, linkimgs },
+            { marca, labrado, caracteristicas, alto, ancho, rin, costo, linkimg },
             { new: true }
         );
 
