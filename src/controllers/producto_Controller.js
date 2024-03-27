@@ -14,13 +14,13 @@ const listarProductos = async (req, res) => {
 const editarProducto = async (req, res) => {
     try {
         const { id } = req.params;
-        const { marca, labrado, caracteristicas, alto, ancho, rin, costo } = req.body;
+        const { marca, labrado, caracteristicas, alto, ancho, rin, costo, linkimg } = req.body;
 
         // Validar los datos antes de la actualización
 
         const productoActualizado = await Producto.findOneAndUpdate(
             { _id: id },
-            { marca, labrado, caracteristicas, alto, ancho, rin, costo },
+            { marca, labrado, caracteristicas, alto, ancho, rin, costo, linkimgs },
             { new: true }
         );
 

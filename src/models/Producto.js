@@ -29,6 +29,10 @@ const productoSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    linkimg: {
+        type: String,
+        required: true,
+    },
 });
 
 const Producto = mongoose.model('producto', productoSchema);
