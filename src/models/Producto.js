@@ -29,6 +29,14 @@ const productoSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    pvp: {
+        type: Number,
+        required: true,
+    },
+    cantidad: {
+        type: Number,
+        required: true,
+    },
     linkimg: {
         type: String,
         required: true,
