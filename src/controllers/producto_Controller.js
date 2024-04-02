@@ -14,7 +14,7 @@ const listarProductos = async (req, res) => {
 const editarProducto = async (req, res) => {
     try {
         const { id } = req.params;
-        const { marca, labrado, caracteristicas, alto, ancho, rin, costo, linkimg, cantida } = req.body;
+        const { marca, labrado, caracteristicas, alto, ancho, rin, costo, linkimg, cantidad } = req.body;
 
         // Validar los datos antes de la actualización
 
