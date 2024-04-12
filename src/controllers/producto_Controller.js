@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import Producto  from '../models/Producto.js';
 
 const listarProductos = async (req, res) => {
@@ -10,6 +9,25 @@ const listarProductos = async (req, res) => {
         res.status(500).json({ error: 'Error al listar productos' });
     }
 };
+
+const listarProductosPorMedida = async (req, res) => {
+    const { alto, ancho, rin } = req.body;
+
+    try {
+        const productos = await Producto.find({
+            alto: alto,
+            ancho: ancho,
+            rin: rin
+
+        });
+
+        res.status(200).json(productos);
+    } catch (error) {
+        console.error("Error al listar productos:", error);
+        res.status(500).json({ error: 'Error al listar productos' });
+    }
+};
+
 
 const editarProducto = async (req, res) => {
     try {
@@ -55,7 +73,6 @@ const añadirProducto = async (req, res) => {
     }
 };
 
-
 const eliminarProducto = async (req, res) => {
     try {
         const { _id } = req.params;
@@ -81,7 +98,5 @@ const eliminarProducto = async (req, res) => {
     }
 };
 
-
-
-export { listarProductos, editarProducto, añadirProducto, eliminarProducto };
+export { listarProductos, editarProducto, añadirProducto, eliminarProducto, listarProductosPorMedida };
 

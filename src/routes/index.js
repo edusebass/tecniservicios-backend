@@ -1,6 +1,6 @@
 import express from 'express';
 import { sendEmailController } from '../controllers/emailController.js';
-import { añadirProducto, editarProducto, eliminarProducto, listarProductos} from '../controllers/producto_Controller.js'
+import { añadirProducto, editarProducto, eliminarProducto, listarProductos, listarProductosPorMedida} from '../controllers/producto_Controller.js'
 
 const router = express.Router();
 
@@ -15,6 +15,7 @@ router.get('/send-email', (req, res) => {
 
 // rutas para el producto
 router.get('/productos', listarProductos)
+router.post('/productos-especifico', listarProductosPorMedida)
 router.put('/productos/:id', editarProducto);
 router.post('/productos', añadirProducto);
 router.delete('/productos/:_id', eliminarProducto);
