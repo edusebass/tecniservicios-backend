@@ -15,7 +15,7 @@ const productoSchema = new mongoose.Schema({
     },
     alto: {
         type: Number,
-        required: true,
+        // required: true,
     },
     ancho: {
         type: Number,
