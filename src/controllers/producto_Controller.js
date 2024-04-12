@@ -37,9 +37,13 @@ const editarProducto = async (req, res) => {
 
 const añadirProducto = async (req, res) => {
     try {
-        
         // Elimina el campo _id antes de insertar
         delete req.body._id;
+
+        // Asigna un valor predeterminado para 'alto' si es null o undefined
+        if (req.body.alto === null || req.body.alto === undefined) {
+            req.body.alto = null; // o el valor predeterminado que desees
+        }
 
         // No proporcionar _id manualmente para que MongoDB lo asigne automáticamente
         const producto = await Producto.create(req.body);
@@ -47,10 +51,10 @@ const añadirProducto = async (req, res) => {
         res.status(200).json({ msg: `Registro exitoso del Producto ${producto._id}`, producto });
     } catch (error) {
         console.log("Error al añadir producto:", error);
-
         res.status(500).json({ error: 'Error al añadir producto' });
     }
 };
+
 
 const eliminarProducto = async (req, res) => {
     try {
